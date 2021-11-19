@@ -1,0 +1,18 @@
+<%- include('partials/head') %>
+<body>
+    <%- include('partials/navbar') %>
+    <main class="container row px-0 mx-auto my-2">
+        <div class="col-8">
+            <form action="/api/newfact" method="post" class="card-body bg-light">
+                <h3>Ajoutez votre meilleur Chuck Norris Fact!</h3>
+                <p>Il sera ensuite soumis aux votes. Les facts les mieux votés seront ensuite validés par notre équipe de modérateur.
+                <br>Les facts comportant des fautes d'orthographe, grammaire ou ponctuation seront automatiquement rejetés.</p>
+                <textarea name="user_fact" cols="50" rows="8" class="d-block mb-4"></textarea>
+                <input type="submit" value="Soumettre" class="btn btn-primary">
+            </form>
+        </div>
+        <%- include('partials/aside') %>
+    </main>
+    <%- include('partials/footer') %>
+</body>
+</html>

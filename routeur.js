@@ -7,6 +7,7 @@ import {
   ajouter,
   moderation,
   voirFact,
+  creerFact,
 } from "./controller/factsController.js";
 
 const routeur = express.Router();
@@ -18,5 +19,7 @@ routeur.get("/facts/random", factsRandom);
 routeur.get("/ajouter", ajouter);
 routeur.get("/moderation", moderation);
 routeur.get("/voir_fact/:id", voirFact);
+
+routeur.post("/api/newfact", creerFact);
 
 export default routeur;

@@ -1,3 +1,5 @@
+import { Fact } from "../model/Facts.js";
+
 export function index(req, res) {
   console.log("/");
   res.render("index");
@@ -29,8 +31,17 @@ export function voirFact(req, res) {
 
 // API
 const apiPrefix = "api";
-export function creerFact(req, res) {
+export async function creerFact(req, res) {
   console.log("/" + apiPrefix + "/newfact");
-  console.log(req);
-  res.render("index");
+  const contenu = req.body.contenu;
+  try {
+    const newFact = new Fact(contenu);
+    console.log(newFact);
+    const data = await newFact.sauvegarder();
+    console.log(data);
+    res.render("moderation");
+  } catch (error) {
+    console.log(error);
+    res.render("moderation");
+  }
 }

@@ -20,28 +20,57 @@ export function ajouter(req, res) {
   console.log("/ajouter");
   res.render("ajouter");
 }
-export function moderation(req, res) {
+
+export async function moderation(req, res) {
   console.log("/moderation");
-  res.render("moderation");
+  let facts = [];
+  try {
+    facts = await Fact.trouverFactsPourModeration();
+  } catch (error) {
+    console.log(error);
+  } finally {
+    res.render("moderation", { facts });
+  }
 }
-export function voirFact(req, res) {
+
+export async function voirFact(req, res) {
   console.log("/voir_fact/:id");
-  res.render("index");
+  const _id = req.params.id;
+  try {
+    const fact = await Fact.trouverParId(_id);
+    res.render("voir_fact", { fact });
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
 }
 
 // API
 const apiPrefix = "api";
+
 export async function creerFact(req, res) {
-  console.log("/" + apiPrefix + "/newfact");
+  console.log("/" + apiPrefix + "/proposition");
   const contenu = req.body.contenu;
   try {
     const newFact = new Fact(contenu);
-    console.log(newFact);
-    const data = await newFact.sauvegarder();
-    console.log(data);
-    res.render("moderation");
+    await newFact.sauvegarder();
   } catch (error) {
     console.log(error);
-    res.render("moderation");
+  } finally {
+    res.redirect("/moderation");
+  }
+}
+
+export async function modererFact(req, res) {}
+
+export async function noterFact(req, res) {
+  console.log("/" + apiPrefix + "/vote_note");
+  const { factId, note } = req.body;
+  try {
+    await Fact.modifierNote(factId, note);
+    res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
   }
 }

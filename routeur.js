@@ -8,6 +8,8 @@ import {
   moderation,
   voirFact,
   creerFact,
+  modererFact,
+  noterFact,
 } from "./controller/factsController.js";
 
 const routeur = express.Router();
@@ -20,6 +22,8 @@ routeur.get("/ajouter", ajouter);
 routeur.get("/moderation", moderation);
 routeur.get("/voir_fact/:id", voirFact);
 
-routeur.post("/api/newfact", creerFact);
+routeur.post("/api/proposition", creerFact);
+routeur.post("/api/vote_moderation", modererFact);
+routeur.post("/api/vote_note", noterFact);
 
 export default routeur;

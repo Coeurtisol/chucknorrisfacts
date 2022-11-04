@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-body bg-light"><%= fact.contenu %></div>
+  <div class="d-flex vote-div">
+      <a href="/voir_fact/<%= fact._id %>"><%= fact._id %></a><span>&nbsp;(<%= fact.note %>/10)</span>
+      <div class="ms-auto">
+          <a onclick="voter(this)" data-factid=<%= fact._id %> data-note="1" role="button">[+]</a>
+          <a onclick="voter(this)" data-factid=<%= fact._id %> data-note="2" role="button">[+][+]</a>
+          <a onclick="voter(this)" data-factid=<%= fact._id %> data-note="3" role="button">[+][+][+]</a>
+      </div>
+  </div>
+</div>

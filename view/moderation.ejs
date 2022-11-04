@@ -9,6 +9,9 @@
                     <p class="mb-0">Découvrez les derniers facts soumis et ayez votre mot à dire sur leur future présence sur Chuck Norris Facts -fr!
                         Si vous jugez que ce fact a sa place sur le site, votez pour lui!</p>
                 </div>
+                <% facts?.forEach(fact => { %>
+                    <%- include("partials/fact", {fact}) %>
+                <% }) %>
             </div>
             <%- include('partials/aside') %>
         </div>

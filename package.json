@@ -2,9 +2,10 @@
   "name": "chucknorrisfacts_nodejs",
   "version": "1.0.0",
   "description": "Reproduction approximative du site internet http://chucknorrisfacts.fr en NodeJS",
-  "main": "app.js",
+  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon app"
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,6 @@
     "express": "^4.17.1",
     "mongodb": "^4.2.1"
   },
-  "type": "module",
   "devDependencies": {
     "nodemon": "^2.0.15"
   }
